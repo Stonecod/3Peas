@@ -23,6 +23,9 @@
             --text-muted: #666666;
             --bg-light: #f9f9f9;
             --white: #ffffff;
+            --radius: 14px;
+            --shadow-soft: 0 14px 34px rgba(5, 24, 16, 0.08);
+            --shadow-strong: 0 22px 46px rgba(5, 24, 16, 0.16);
             --transition: all 0.3s ease;
         }
 
@@ -37,7 +40,7 @@
             font-family: 'Outfit', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
-            background-color: var(--white);
+            background: radial-gradient(circle at top right, #f7f2e8 0%, #ffffff 42%);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
@@ -97,23 +100,42 @@
         .btn {
             display: inline-block;
             padding: 14px 32px;
-            border-radius: 4px;
-            font-weight: 500;
+            border-radius: 999px;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             border: none;
             font-size: 1rem;
             text-align: center;
             line-height: 1.2;
+            box-shadow: 0 8px 20px rgba(10, 46, 29, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -120%;
+            left: -35%;
+            width: 36%;
+            height: 340%;
+            transform: rotate(18deg);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::after {
+            left: 120%;
         }
 
         .btn-primary {
-            background-color: var(--gold);
+            background: linear-gradient(135deg, #b1883f, var(--gold));
             color: var(--white);
         }
 
         .btn-primary:hover {
-            background-color: var(--gold-hover);
+            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
             transform: translateY(-2px);
         }
 
@@ -133,9 +155,10 @@
         }
 
         .btn-outline {
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.08);
             color: var(--white);
             border: 2px solid var(--white);
+            box-shadow: none;
         }
 
         .btn-outline:hover {
@@ -145,13 +168,22 @@
 
         /* HEADER & NAVIGATION */
         header {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
-            padding: 25px 0;
+            padding: 20px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            background: rgba(10, 46, 29, 0.86);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom-color: rgba(201, 162, 85, 0.25);
         }
 
         .nav-container {
@@ -201,6 +233,14 @@
 
         .desktop-nav a:hover {
             color: var(--gold);
+        }
+
+        .desktop-nav a.active-link {
+            color: var(--gold);
+        }
+
+        .desktop-nav a.active-link::after {
+            transform: scaleX(1);
         }
 
         .desktop-nav a:hover::after {
@@ -278,10 +318,18 @@
         .hero {
             height: 100vh;
             min-height: 600px;
-            background: linear-gradient(rgba(10, 46, 29, 0.7), rgba(10, 46, 29, 0.7)), url('etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(8, 36, 23, 0.68), rgba(10, 46, 29, 0.78)), url('etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 20%, rgba(201, 162, 85, 0.2), transparent 44%);
         }
 
         .hero-content {
@@ -290,16 +338,33 @@
             max-width: 800px;
             margin: 0 auto;
             text-shadow: 0 5px 22px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.14);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: clamp(2.2rem, 5vw, 4.3rem);
             margin-bottom: 20px;
             line-height: 1.2;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             margin-bottom: 40px;
             font-weight: 300;
         }
@@ -308,6 +373,40 @@
             display: flex;
             gap: 20px;
             justify-content: center;
+        }
+
+        .hero-metrics {
+            margin-top: 36px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .metric-card {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 14px 16px;
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #fff8e9;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 0.92rem;
+            opacity: 0.9;
         }
 
         /* WHY CHOOSE US */
@@ -320,11 +419,12 @@
         .feature-card {
             padding: 40px 30px;
             background: var(--white);
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
+            border: 1px solid #e9e9e9;
+            border-radius: var(--radius);
             text-align: center;
             transition: var(--transition);
             will-change: transform;
+            box-shadow: var(--shadow-soft);
         }
 
         .feature-card:hover {
@@ -370,11 +470,12 @@
 
         .property-card {
             background: var(--white);
-            border-radius: 8px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-soft);
             transition: var(--transition);
             will-change: transform;
+            border: 1px solid #ececec;
         }
 
         .property-card:hover {
@@ -467,13 +568,17 @@
 
         .service-item {
             text-align: left;
-            padding-left: 20px;
-            border-left: 3px solid var(--gold);
+            padding: 24px;
+            border: 1px solid #ededed;
+            border-radius: 12px;
+            border-left: 4px solid var(--gold);
             transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 8px 24px rgba(10, 46, 29, 0.05);
         }
 
         .service-item:hover {
-            transform: translateX(4px);
+            transform: translateY(-3px);
             border-left-color: var(--gold-hover);
         }
 
@@ -502,11 +607,12 @@
         .process-card {
             background: var(--white);
             border: 1px solid #eaeaea;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 30px 24px;
             text-align: center;
             transition: var(--transition);
             will-change: transform;
+            box-shadow: 0 10px 22px rgba(10, 46, 29, 0.05);
         }
 
         .process-card:hover {
@@ -681,8 +787,8 @@
             grid-template-columns: 3fr 2fr;
             gap: 60px;
             background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
             overflow: hidden;
             border: 1px solid #efefef;
         }
@@ -706,10 +812,11 @@
             width: 100%;
             padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 10px;
             font-family: inherit;
             font-size: 1rem;
             transition: var(--transition);
+            background: #fdfdfd;
         }
 
         .form-control:focus {
@@ -724,7 +831,7 @@
         }
 
         .contact-info {
-            background-color: var(--bg-light);
+            background: linear-gradient(160deg, #f7f7f7, #fbf8f1);
             padding: 50px;
             border-left: 1px solid #eaeaea;
         }
@@ -758,17 +865,6 @@
             margin-bottom: 5px;
         }
 
-        .whatsapp-main {
-            width: 100%;
-            background-color: #25D366;
-            color: white;
-            margin-top: 20px;
-        }
-
-        .whatsapp-main:hover {
-            background-color: #128C7E;
-        }
-
         /* FORM MESSAGES */
         .status-msg {
             margin-top: 20px;
@@ -793,9 +889,37 @@
         footer {
             background-color: var(--primary-green);
             color: var(--white);
-            padding: 40px 0;
+            padding: 56px 0 40px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1dbf5f, #25D366);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            box-shadow: 0 16px 36px rgba(16, 109, 59, 0.36);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            z-index: 999;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .floating-whatsapp:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 20px 42px rgba(16, 109, 59, 0.45);
+        }
+
+        .floating-whatsapp:active {
+            transform: translateY(0);
         }
 
         .footer-socials {
@@ -835,6 +959,48 @@
             font-size: 0.95rem;
         }
 
+        .site-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at top, #1b5037 0%, #0a2e1d 56%);
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .site-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-mark {
+            width: 64px;
+            height: 64px;
+            border: 3px solid rgba(255, 255, 255, 0.25);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.85s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation: none !important;
@@ -847,9 +1013,6 @@
         @media (max-width: 992px) {
             .contact-wrap {
                 grid-template-columns: 1fr;
-            }
-            .hero-content h1 {
-                font-size: 3rem;
             }
             .process-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -866,6 +1029,9 @@
             .hero-content h1 {
                 font-size: 2.5rem;
             }
+            .hero-badge {
+                font-size: 0.85rem;
+            }
             .hero-buttons {
                 flex-direction: column;
                 width: 100%;
@@ -873,6 +1039,10 @@
             }
             .hero-buttons .btn {
                 width: min(100%, 300px);
+            }
+            .hero-metrics {
+                grid-template-columns: 1fr;
+                max-width: 360px;
             }
             .contact-form-container, .contact-info {
                 padding: 30px;
@@ -901,10 +1071,20 @@
             .showcase-overlay p {
                 font-size: 0.88rem;
             }
+            .floating-whatsapp {
+                width: 56px;
+                height: 56px;
+                right: 16px;
+                bottom: 16px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="site-loader" id="site-loader" aria-hidden="true">
+        <div class="loader-mark"></div>
+    </div>
 
     <header>
         <div class="container nav-container">
@@ -942,11 +1122,26 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-shield-alt"></i> Trusted by buyers and investors nationwide</div>
                 <h1>Discover Premium Living in Nigeria</h1>
                 <p>We connect discerning buyers and investors with exceptional real estate opportunities across Lagos, Abuja, and beyond.</p>
                 <div class="hero-buttons">
                     <a href="#listings" class="btn btn-primary">View Properties</a>
                     <a href="#contact" class="btn btn-outline">Book Consultation</a>
+                </div>
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <span class="metric-value" data-counter-target="250" data-counter-suffix="+">0</span>
+                        <span class="metric-label">Verified premium properties</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value" data-counter-target="98" data-counter-suffix="%">0</span>
+                        <span class="metric-label">Successful close rate</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value" data-counter-target="7" data-counter-suffix="+">0</span>
+                        <span class="metric-label">Years market experience</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -959,7 +1154,7 @@
                 <p>Experience a seamless, secure, and personalized approach to buying and renting real estate in Nigeria.</p>
             </div>
             
-            <div class="features-grid">
+            <div class="features-grid reveal-on-scroll">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
                     <h3>Verified Listings</h3>
@@ -991,7 +1186,7 @@
                 <p>Explore our highly curated selection of luxury residences and prime investments.</p>
             </div>
 
-            <div class="listings-grid">
+            <div class="listings-grid reveal-on-scroll">
                 <div class="property-card">
                     <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" alt="Lekki Villa" class="prop-image" loading="lazy">
                     <div class="prop-content">
@@ -1050,7 +1245,7 @@
                 <p>Comprehensive real estate solutions tailored for the Nigerian market.</p>
             </div>
             
-            <div class="services-grid">
+            <div class="services-grid reveal-on-scroll">
                 <div class="service-item">
                     <h3>Buying & Selling</h3>
                     <p>End-to-end facilitation of property acquisitions and sales with transparent market valuations and seamless title transfers.</p>
@@ -1078,7 +1273,7 @@
                 <p>Simple, transparent process from search to ownership</p>
             </div>
 
-            <div class="process-grid">
+            <div class="process-grid reveal-on-scroll">
                 <div class="process-card">
                     <div class="process-step">1</div>
                     <h3>Consultation &amp; Requirement</h3>
@@ -1105,7 +1300,7 @@
                 <h2>Property Showcase</h2>
                 <p>Take a closer look at some of our premium listings</p>
             </div>
-            <div class="showcase-video-wrap">
+            <div class="showcase-video-wrap reveal-on-scroll">
                 <video class="showcase-video" controls preload="metadata">
                     <source src="video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -1128,7 +1323,7 @@
                 <p>Don't just take our word for it.</p>
             </div>
 
-            <div class="test-grid">
+            <div class="test-grid reveal-on-scroll">
                 <div class="test-card">
                     <div class="test-icon"><i class="fas fa-quote-left"></i></div>
                     <p class="test-text">"Relocating back to Nigeria felt daunting, but 3Peas handled everything. They found the perfect house in Ikoyi and ensured all paperwork was immaculate."</p>
@@ -1156,7 +1351,7 @@
                 <p>Reach out to schedule a private viewing or speak with an investment advisor.</p>
             </div>
 
-            <div class="contact-wrap">
+            <div class="contact-wrap reveal-on-scroll">
                 <div class="contact-form-container">
                     <form id="contact-form">
                         <div class="form-group">
@@ -1216,10 +1411,7 @@
 
                     <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
                     
-                    <p style="color: var(--text-muted); margin-bottom: 15px;">Prefer to chat instantly? Reach our agents directly on WhatsApp.</p>
-                    <button id="general-whatsapp" class="btn whatsapp-main">
-                        <i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-right: 8px;"></i> Chat on WhatsApp
-                    </button>
+                    <p style="color: var(--text-muted); margin-bottom: 0;">Prefer to chat instantly? Use the floating WhatsApp button on the bottom-right corner.</p>
                 </div>
             </div>
         </div>
@@ -1247,12 +1439,24 @@
         </div>
     </footer>
 
+    <a
+        href="https://wa.me/2347063428130?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20your%20real%20estate%20services."
+        class="floating-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+    >
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
         // --- 1. MOBILE NAVIGATION LOGIC ---
+        const pageHeader = document.querySelector('header');
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
+        const siteLoader = document.getElementById('site-loader');
 
         function openMenu() {
             mobileMenu.classList.add('active');
@@ -1288,6 +1492,91 @@
                 closeMenu();
             }
         });
+
+        function handleHeaderScroll() {
+            if (!pageHeader) return;
+            pageHeader.classList.toggle('scrolled', window.scrollY > 24);
+        }
+        handleHeaderScroll();
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+
+        // Lightweight first-load transition
+        window.addEventListener('load', () => {
+            if (!siteLoader) return;
+            siteLoader.classList.add('hidden');
+        });
+
+        // --- 1B. REVEAL-ON-SCROLL + COUNTERS ---
+        const revealEls = document.querySelectorAll('.reveal-on-scroll');
+        const counterEls = document.querySelectorAll('[data-counter-target]');
+        const animatedCounters = new WeakSet();
+
+        function animateCounter(el) {
+            if (!el || animatedCounters.has(el)) return;
+            animatedCounters.add(el);
+
+            const target = Number(el.dataset.counterTarget || 0);
+            const suffix = el.dataset.counterSuffix || '';
+            const durationMs = 1400;
+            const start = performance.now();
+
+            function step(now) {
+                const progress = Math.min((now - start) / durationMs, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(target * eased);
+                el.textContent = `${value}${suffix}`;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.16 });
+
+        revealEls.forEach((el) => revealObserver.observe(el));
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.45 });
+
+        counterEls.forEach((el) => counterObserver.observe(el));
+
+        // --- 1C. ACTIVE NAV LINK ON SCROLL ---
+        const pageSections = Array.from(document.querySelectorAll('section[id]'));
+        const desktopNavLinks = Array.from(document.querySelectorAll('.desktop-nav a'));
+        const mobileNavLinks = Array.from(document.querySelectorAll('.mobile-nav a'));
+        const allNavLinks = [...desktopNavLinks, ...mobileNavLinks];
+
+        function setActiveNavLink() {
+            let currentId = '';
+            const triggerOffset = window.scrollY + 140;
+
+            pageSections.forEach((section) => {
+                if (section.offsetTop <= triggerOffset) {
+                    currentId = section.getAttribute('id') || '';
+                }
+            });
+
+            allNavLinks.forEach((link) => {
+                const isActive = link.getAttribute('href') === `#${currentId}`;
+                link.classList.toggle('active-link', isActive);
+            });
+        }
+
+        setActiveNavLink();
+        window.addEventListener('scroll', setActiveNavLink, { passive: true });
 
 
         // --- 2. LISTING CTA: PREFILL CONTACT FORM + SCROLL ---
@@ -1327,17 +1616,6 @@
                 }
             });
         });
-
-        // Handle General Contact WhatsApp button
-        const generalWhatsappBtn = document.getElementById('general-whatsapp');
-        if (generalWhatsappBtn) {
-            generalWhatsappBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const message = "Hello, I’d like to enquire about your real estate services.";
-                const waUrl = `https://wa.me/${businessWhatsAppNumber}?text=${encodeURIComponent(message)}`;
-                window.open(waUrl, '_blank');
-            });
-        }
 
         // --- 3. TESTIMONIALS SLIDER ---
         const testimonialCards = document.querySelectorAll('.test-grid .test-card');
