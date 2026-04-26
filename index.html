@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3Peas Homes | Premium Real Estate in Nigeria</title>
+    <meta name="description" content="3Peas Realty helps buyers and investors discover verified premium properties across Nigeria with trusted guidance from search to closing.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            --primary-green: #0a2e1d;
+            --primary-light: #164a32;
+            --gold: #c9a255;
+            --gold-hover: #e0b968;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            letter-spacing: 0.1px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* REUSABLE CLASSES */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+            scroll-margin-top: 90px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:focus-visible,
+        .desktop-nav a:focus-visible,
+        .mobile-nav a:focus-visible,
+        .social-link:focus-visible,
+        .form-control:focus-visible,
+        .hamburger:focus-visible,
+        .close-btn:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-green);
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .desktop-nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        .desktop-nav a {
+            color: var(--white);
+            font-weight: 400;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1.5px;
+            background-color: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.28s ease;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--gold);
+        }
+
+        .desktop-nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hamburger {
+            display: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* MOBILE MENU (FULLSCREEN) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--primary-green);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 5%;
+            color: var(--white);
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav ul {
+            text-align: center;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav a {
+            color: var(--white);
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            transition: var(--transition);
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(10, 46, 29, 0.7), rgba(10, 46, 29, 0.7)), url('etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 5px 22px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* WHY CHOOSE US */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 40px 30px;
+            background: var(--white);
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+            will-change: transform;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(201, 162, 85, 0.1);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* FEATURED LISTINGS */
+        .listings {
+            background-color: var(--bg-light);
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            will-change: transform;
+        }
+
+        .property-card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .prop-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .property-card:hover .prop-image {
+            transform: scale(1.04);
+        }
+
+        .prop-content {
+            padding: 30px;
+        }
+
+        .prop-price {
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .prop-title {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .prop-location {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prop-details {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            margin-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        .prop-details span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-enquire {
+            width: 100%;
+            background: linear-gradient(135deg, #b58a3b, var(--gold));
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid rgba(201, 162, 85, 0.45);
+            box-shadow: 0 8px 18px rgba(10, 46, 29, 0.12);
+            letter-spacing: 0.2px;
+        }
+
+        .whatsapp-enquire:hover {
+            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(10, 46, 29, 0.18);
+        }
+
+        .whatsapp-enquire:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 14px rgba(10, 46, 29, 0.16);
+        }
+
+        /* SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            text-align: left;
+            padding-left: 20px;
+            border-left: 3px solid var(--gold);
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            transform: translateX(4px);
+            border-left-color: var(--gold-hover);
+        }
+
+        .service-item h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-green);
+        }
+
+        .service-item p {
+            color: var(--text-muted);
+        }
+
+        /* HOW WE WORK */
+        .how-we-work {
+            background-color: var(--bg-light);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .process-card {
+            background: var(--white);
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: var(--transition);
+            will-change: transform;
+        }
+
+        .process-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+        }
+
+        .process-step {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 162, 85, 0.12);
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .process-card h3 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary-green);
+            font-size: 1.15rem;
+        }
+
+        /* PROPERTY SHOWCASE VIDEO */
+        .showcase {
+            background-color: var(--white);
+        }
+
+        .showcase-video-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eaeaea;
+            background: #000;
+            position: relative;
+        }
+
+        .showcase-video {
+            width: 100%;
+            display: block;
+            height: auto;
+            min-height: 260px;
+            object-fit: cover;
+        }
+
+        .showcase-video-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0.45) 100%);
+            pointer-events: none;
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            bottom: 78px;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.14);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+            color: var(--white);
+            pointer-events: none;
+        }
+
+        .showcase-overlay h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+        }
+
+        .showcase-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .showcase-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(201, 162, 85, 0.7);
+            background: rgba(10, 46, 29, 0.55);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .testimonials .section-title h2,
+        .testimonials .section-title p {
+            color: var(--white);
+        }
+
+        .test-grid {
+            max-width: 760px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 290px;
+        }
+
+        .test-card {
+            background-color: var(--primary-light);
+            padding: 40px;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            will-change: opacity, transform;
+        }
+
+        .test-card.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            box-shadow: 0 16px 34px rgba(0,0,0,0.22);
+        }
+
+        .test-icon {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .test-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .test-author h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        .test-author span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* CONTACT SECTION */
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 60px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #efefef;
+        }
+
+        .contact-form-container {
+            padding: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-green);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 162, 85, 0.1);
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            background-color: var(--bg-light);
+            padding: 50px;
+            border-left: 1px solid #eaeaea;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-green);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item i {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .info-item p {
+            color: var(--text-muted);
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .whatsapp-main {
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .whatsapp-main:hover {
+            background-color: #128C7E;
+        }
+
+        /* FORM MESSAGES */
+        .status-msg {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .status-msg.success {
+            display: block;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-msg.error {
+            display: block;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(201, 162, 85, 0.45);
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.04);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--primary-green);
+            background-color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .social-link:active {
+            transform: translateY(0);
+        }
+
+        .footer-note {
+            color: rgba(255, 255, 255, 0.78);
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .contact-wrap {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .process-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+            .hero-buttons .btn {
+                width: min(100%, 300px);
+            }
+            .contact-form-container, .contact-info {
+                padding: 30px;
+            }
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            .test-grid {
+                min-height: 360px;
+            }
+            .test-card {
+                padding: 32px 24px;
+            }
+            .showcase-overlay {
+                left: 14px;
+                right: 14px;
+                bottom: 68px;
+                padding: 14px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .showcase-overlay h3 {
+                font-size: 1.02rem;
+            }
+            .showcase-overlay p {
+                font-size: 0.88rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">3Peas<span>.</span></a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#listings">Properties</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger" id="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="close-btn" id="close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#why-us" class="mobile-link">Why Us</a></li>
+                <li><a href="#listings" class="mobile-link">Properties</a></li>
+                <li><a href="#services" class="mobile-link">Services</a></li>
+                <li><a href="#contact" class="mobile-link">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Premium Living in Nigeria</h1>
+                <p>We connect discerning buyers and investors with exceptional real estate opportunities across Lagos, Abuja, and beyond.</p>
+                <div class="hero-buttons">
+                    <a href="#listings" class="btn btn-primary">View Properties</a>
+                    <a href="#contact" class="btn btn-outline">Book Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>The 3Peas Advantage</h2>
+                <p>Experience a seamless, secure, and personalized approach to buying and renting real estate in Nigeria.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>Verified Listings</h3>
+                    <p>Every property in our portfolio undergoes rigorous physical and legal checks to ensure zero encumbrances.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-file-shield"></i></div>
+                    <h3>Secure Documentation</h3>
+                    <p>Our in-house legal experts guide you through C of O, Governor's Consent, and deeds processing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Personal Agent Support</h3>
+                    <p>Get paired with a dedicated real estate advisor who understands your specific lifestyle and budget.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-home"></i></div>
+                    <h3>Tailored Property Matching</h3>
+                    <p>We don't just sell houses; we leverage our network to find the exact architectural fit for your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="listings" class="section-padding listings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Properties</h2>
+                <p>Explore our highly curated selection of luxury residences and prime investments.</p>
+            </div>
+
+            <div class="listings-grid">
+                <div class="property-card">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" alt="Lekki Villa" class="prop-image" loading="lazy">
+                    <div class="prop-content">
+                        <div class="prop-price">₦350,000,000</div>
+                        <h3 class="prop-title">The Apex Villa</h3>
+                        <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Lekki Phase 1, Lagos</div>
+                        <div class="prop-details">
+                            <span><i class="fas fa-bed"></i> 5 Beds</span>
+                            <span><i class="fas fa-bath"></i> 6 Baths</span>
+                        </div>
+                        <button class="btn whatsapp-enquire">
+                            <i class="fas fa-paper-plane"></i> Enquire Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" alt="Ikoyi Apartment" class="prop-image" loading="lazy">
+                    <div class="prop-content">
+                        <div class="prop-price">₦420,000,000</div>
+                        <h3 class="prop-title">Riverside Penthouses</h3>
+                        <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Ikoyi, Lagos</div>
+                        <div class="prop-details">
+                            <span><i class="fas fa-bed"></i> 4 Beds</span>
+                            <span><i class="fas fa-bath"></i> 4.5 Baths</span>
+                        </div>
+                        <button class="btn whatsapp-enquire">
+                            <i class="fas fa-paper-plane"></i> Enquire Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="Abuja Mansion" class="prop-image" loading="lazy">
+                    <div class="prop-content">
+                        <div class="prop-price">₦600,000,000</div>
+                        <h3 class="prop-title">Maitama Grand</h3>
+                        <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Maitama, Abuja</div>
+                        <div class="prop-details">
+                            <span><i class="fas fa-bed"></i> 6 Beds</span>
+                            <span><i class="fas fa-bath"></i> 7 Baths</span>
+                        </div>
+                        <button class="btn whatsapp-enquire">
+                            <i class="fas fa-paper-plane"></i> Enquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Services</h2>
+                <p>Comprehensive real estate solutions tailored for the Nigerian market.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Buying & Selling</h3>
+                    <p>End-to-end facilitation of property acquisitions and sales with transparent market valuations and seamless title transfers.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Premium Rentals</h3>
+                    <p>Access to exclusively listed luxury apartments and shortlets in high-brow neighborhoods.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Investment Advisory</h3>
+                    <p>Data-driven insights into emerging high-yield real estate corridors for individual and institutional investors.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Property Management</h3>
+                    <p>Hassle-free facility management, tenant screening, and rent collection to protect your asset's value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-we-work" class="section-padding how-we-work">
+        <div class="container">
+            <div class="section-title">
+                <h2>How We Work</h2>
+                <p>Simple, transparent process from search to ownership</p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-step">1</div>
+                    <h3>Consultation &amp; Requirement</h3>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">2</div>
+                    <h3>Property Matching</h3>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">3</div>
+                    <h3>Inspection &amp; Verification</h3>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">4</div>
+                    <h3>Documentation &amp; Closing</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="showcase" class="section-padding showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Property Showcase</h2>
+                <p>Take a closer look at some of our premium listings</p>
+            </div>
+            <div class="showcase-video-wrap">
+                <video class="showcase-video" controls preload="metadata">
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="showcase-overlay">
+                    <div>
+                        <h3>Featured Tour: Ikoyi Waterfront Residence</h3>
+                        <p>4 Beds • 4.5 Baths • Private cinema • Smart home integration</p>
+                    </div>
+                    <span class="showcase-tag"><i class="fas fa-star"></i> Premium Listing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Experiences</h2>
+                <p>Don't just take our word for it.</p>
+            </div>
+
+            <div class="test-grid">
+                <div class="test-card">
+                    <div class="test-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="test-text">"Relocating back to Nigeria felt daunting, but 3Peas handled everything. They found the perfect house in Ikoyi and ensured all paperwork was immaculate."</p>
+                    <div class="test-author">
+                        <h4>Dr. Kunle A.</h4>
+                        <span>Diaspora Investor</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="test-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="test-text">"The level of professionalism is unmatched. I contacted them about a property in Lekki, and within 48 hours, I was viewing it. Closed the deal securely."</p>
+                    <div class="test-author">
+                        <h4>Ngozi E.</h4>
+                        <span>Business Executive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Start Your Journey</h2>
+                <p>Reach out to schedule a private viewing or speak with an investment advisor.</p>
+            </div>
+
+            <div class="contact-wrap">
+                <div class="contact-form-container">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fInterest">Area of Interest</label>
+                            <select id="fInterest" name="interest" class="form-control" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Buying">Buying a Property</option>
+                                <option value="Selling">Selling a Property</option>
+                                <option value="Renting">Renting</option>
+                                <option value="Investment">Investment Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fMsg">Message</label>
+                            <textarea id="fMsg" name="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Enquiry</button>
+                        <div id="form-status" class="status-msg"></div>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Head Office</strong>
+                            <p>15 Admiralty Way, Lekki Phase 1,<br>Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email Us</strong>
+                            <p>3peasrealty@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <strong>Call Us</strong>
+                            <p>+2347063428130</p>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
+                    
+                    <p style="color: var(--text-muted); margin-bottom: 15px;">Prefer to chat instantly? Reach our agents directly on WhatsApp.</p>
+                    <button id="general-whatsapp" class="btn whatsapp-main">
+                        <i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-right: 8px;"></i> Chat on WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px;">3Peas<span>.</span></div>
+            <div class="footer-socials">
+                <a class="social-link" href="https://www.instagram.com/3peasrealty?igsh=MXc5N2VxOXI5eDJxNg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="social-link" href="https://wa.me/2347063428130" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a class="social-link" href="mailto:3peasrealty@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a class="social-link" href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+            <p>&copy; 2026 3Peas Homes Limited. All Rights Reserved.</p>
+            <p class="footer-note">Premium real estate advisory and verified properties across Nigeria.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. MOBILE NAVIGATION LOGIC ---
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Open via hamburger
+        hamburgerBtn.addEventListener('click', openMenu);
+
+        // Close via X button
+        closeBtn.addEventListener('click', closeMenu);
+
+        // Close when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close when clicking outside the menu content (on the overlay background)
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMenu();
+            }
+        });
+
+        // Close when Escape key is pressed
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+
+        // --- 2. LISTING CTA: PREFILL CONTACT FORM + SCROLL ---
+        const contactSection = document.getElementById('contact');
+
+        // Setup your business WhatsApp number here (include country code, no + or spaces)
+        const businessWhatsAppNumber = "2347063428130";
+
+        // Handle Property Card CTA buttons
+        const propertyWhatsappBtns = document.querySelectorAll('.whatsapp-enquire');
+        
+        propertyWhatsappBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const card = this.closest('.property-card');
+                if (!card) return;
+                const titleNode = card.querySelector('.l-title, .prop-title');
+                const locationNode = card.querySelector('.l-loc, .prop-location');
+                const title = titleNode ? titleNode.innerText.trim() : 'property';
+                const location = locationNode ? locationNode.innerText.trim() : 'your preferred location';
+
+                const contactMessage = `Hello, I'm interested in the ${title} located at ${location}. Please share more details.`;
+                const formInterest = document.getElementById('fInterest');
+                const formMessage = document.getElementById('fMsg');
+
+                if (formInterest) {
+                    formInterest.value = 'Buying';
+                }
+
+                if (formMessage) {
+                    formMessage.value = contactMessage;
+                }
+
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Handle General Contact WhatsApp button
+        const generalWhatsappBtn = document.getElementById('general-whatsapp');
+        if (generalWhatsappBtn) {
+            generalWhatsappBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const message = "Hello, I’d like to enquire about your real estate services.";
+                const waUrl = `https://wa.me/${businessWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+                window.open(waUrl, '_blank');
+            });
+        }
+
+        // --- 3. TESTIMONIALS SLIDER ---
+        const testimonialCards = document.querySelectorAll('.test-grid .test-card');
+        let activeTestimonialIndex = 0;
+
+        if (testimonialCards.length > 0) {
+            testimonialCards[0].classList.add('active');
+
+            setInterval(() => {
+                testimonialCards[activeTestimonialIndex].classList.remove('active');
+                activeTestimonialIndex = (activeTestimonialIndex + 1) % testimonialCards.length;
+                testimonialCards[activeTestimonialIndex].classList.add('active');
+            }, 4000);
+        }
+
+        // --- 4. FORMSUBMIT AJAX HANDLING (No redirect) ---
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(contactForm);
+            
+            const formSubmitUrl = "https://formsubmit.co/ajax/3peasrealty@gmail.com";
+
+            fetch(formSubmitUrl, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show success
+                formStatus.className = "status-msg success";
+                formStatus.innerText = "Thank you! Your enquiry has been received. We will contact you shortly.";
+                contactForm.reset();
+            })
+            .catch(error => {
+                // Show error
+                formStatus.className = "status-msg error";
+                formStatus.innerText = "Oops! Something went wrong. Please try again or use WhatsApp.";
+                console.error(error);
+            })
+            .finally(() => {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formStatus.className = "status-msg";
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
