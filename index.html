@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -40,8 +40,12 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             background: radial-gradient(circle at top right, #202025 0%, #09090b 42%, #060608 100%);
@@ -155,7 +159,7 @@
 
         .btn-primary:hover {
             background: linear-gradient(135deg, var(--gold), var(--gold-hover));
-            transform: translateY(-2px);
+            transform: scale(1.03);
         }
 
         .btn:active {
@@ -183,6 +187,7 @@
         .btn-outline:hover {
             background-color: var(--white);
             color: var(--primary-green);
+            transform: scale(1.03);
         }
 
         /* HEADER & NAVIGATION */
@@ -199,10 +204,10 @@
 
         header.scrolled {
             padding: 12px 0;
-            background: rgba(10, 46, 29, 0.86);
+            background: rgba(12, 12, 16, 0.9);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
-            border-bottom-color: rgba(201, 162, 85, 0.25);
+            border-bottom-color: rgba(212, 168, 79, 0.28);
         }
 
         .nav-container {
@@ -430,6 +435,77 @@
             justify-content: center;
         }
 
+        .hero-trustline {
+            margin-top: 14px;
+            font-size: 0.92rem;
+            color: rgba(244, 239, 227, 0.88);
+            letter-spacing: 0.2px;
+        }
+
+        .hero-search {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr auto;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 168, 79, 0.36);
+            background: rgba(10, 10, 12, 0.68);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-field {
+            display: grid;
+            gap: 6px;
+            text-align: left;
+        }
+
+        .search-field label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.72);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .search-field input,
+        .search-field select {
+            width: 100%;
+            height: 44px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 168, 79, 0.25);
+            background: rgba(16, 16, 20, 0.76);
+            color: #f4efe3;
+            padding: 0 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .search-field input::placeholder {
+            color: rgba(244, 239, 227, 0.58);
+        }
+
+        .search-action {
+            align-self: end;
+            height: 44px;
+            padding: 0 22px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 168, 79, 0.55);
+            background: linear-gradient(135deg, #b1883f, var(--gold));
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-action:hover {
+            transform: scale(1.03);
+            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+        }
+
         .hero-metrics {
             margin-top: 36px;
             display: grid;
@@ -510,7 +586,7 @@
         .feature-card h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         .feature-card p {
@@ -543,7 +619,7 @@
 
         .property-card:hover {
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            transform: translateY(-4px);
+            transform: scale(1.03);
         }
 
         .prop-image {
@@ -620,6 +696,129 @@
         .whatsapp-enquire:active {
             transform: translateY(0);
             box-shadow: 0 6px 14px rgba(10, 46, 29, 0.16);
+        }
+
+        .value-section {
+            background: linear-gradient(180deg, #0e0e12 0%, #14141a 100%);
+        }
+
+        .value-layout {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .value-content h2 {
+            color: var(--gold);
+            font-size: clamp(2rem, 4vw, 2.7rem);
+            margin-bottom: 18px;
+        }
+
+        .value-content p {
+            color: var(--text-muted);
+            font-size: 1.06rem;
+            margin-bottom: 14px;
+        }
+
+        .value-media {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            min-height: 360px;
+        }
+
+        .value-media img {
+            width: 100%;
+            height: 100%;
+            min-height: 360px;
+            object-fit: cover;
+        }
+
+        .trust-section {
+            background: linear-gradient(180deg, #111116 0%, #0d0d11 100%);
+        }
+
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .trust-stat {
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(145deg, var(--glass-bg-strong), rgba(8, 8, 10, 0.5));
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .trust-stat strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .trust-stat span {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .trust-testimonials {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .trust-card {
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(145deg, var(--glass-bg), rgba(9, 9, 12, 0.46));
+            border-radius: 14px;
+            padding: 26px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .trust-card p {
+            color: var(--text-dark);
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .main-cta {
+            background: radial-gradient(circle at top, #1d1d26 0%, #101015 64%);
+            border-top: 1px solid rgba(212, 168, 79, 0.24);
+            border-bottom: 1px solid rgba(212, 168, 79, 0.24);
+        }
+
+        .main-cta-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .main-cta-inner h2 {
+            color: var(--gold);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .main-cta-inner p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 1.08rem;
+        }
+
+        .main-cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
         /* GALLERY */
@@ -744,7 +943,7 @@
         }
 
         .gallery-meta h4 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.98rem;
             color: #f5e7c8;
             line-height: 1.3;
@@ -794,7 +993,7 @@
         }
 
         .service-item h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.4rem;
             margin-bottom: 10px;
             color: #f5e7c8;
@@ -848,7 +1047,7 @@
         }
 
         .process-card h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #f3e4c2;
             font-size: 1.15rem;
         }
@@ -907,6 +1106,38 @@
         body.light-mode .hero-content {
             color: #19191d;
             text-shadow: none;
+        }
+
+        body.light-mode .hero-trustline {
+            color: rgba(34, 34, 40, 0.76);
+        }
+
+        body.light-mode .hero-search {
+            background: rgba(255, 255, 255, 0.78);
+            border-color: rgba(80, 66, 40, 0.24);
+        }
+
+        body.light-mode .search-field label {
+            color: rgba(36, 36, 42, 0.68);
+        }
+
+        body.light-mode .search-field input,
+        body.light-mode .search-field select {
+            background: rgba(255, 255, 255, 0.92);
+            color: #1a1a1f;
+            border-color: rgba(80, 66, 40, 0.18);
+        }
+
+        body.light-mode .value-section {
+            background: linear-gradient(180deg, #f5f5f9 0%, #ececf2 100%);
+        }
+
+        body.light-mode .trust-section {
+            background: linear-gradient(180deg, #f7f7fa 0%, #eeeff4 100%);
+        }
+
+        body.light-mode .trust-card p {
+            color: #1a1a1f;
         }
 
         body.light-mode .hero-badge,
@@ -1023,7 +1254,7 @@
         }
 
         .showcase-overlay h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.15rem;
             margin-bottom: 4px;
         }
@@ -1103,7 +1334,7 @@
         }
 
         .test-author h4 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
             color: var(--gold);
         }
@@ -1175,6 +1406,23 @@
             font-size: 1.8rem;
             margin-bottom: 30px;
             color: var(--gold);
+        }
+
+        .mobile-sticky-cta {
+            display: none;
+            position: fixed;
+            left: 16px;
+            right: 16px;
+            bottom: 14px;
+            z-index: 950;
+            text-align: center;
+            padding: 13px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(212, 168, 79, 0.52);
+            background: linear-gradient(135deg, #b1883f, var(--gold));
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.38);
         }
 
         .info-item {
@@ -1426,11 +1674,23 @@
                 grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
                 max-width: 520px;
             }
+            .hero-search {
+                grid-template-columns: 1fr;
+                padding: 14px;
+            }
+            .search-action {
+                width: 100%;
+            }
             .gallery-item.wide {
                 grid-column: span 1;
             }
             .gallery-item.tall {
                 min-height: 280px;
+            }
+            .value-layout,
+            .trust-testimonials,
+            .trust-stats {
+                grid-template-columns: 1fr;
             }
             .contact-form-container, .contact-info {
                 padding: 30px;
@@ -1463,8 +1723,11 @@
                 width: 56px;
                 height: 56px;
                 right: 16px;
-                bottom: 16px;
+                bottom: 84px;
                 font-size: 1.5rem;
+            }
+            .mobile-sticky-cta {
+                display: block;
             }
         }
     </style>
@@ -1480,9 +1743,10 @@
             
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#about-value">About</a></li>
                     <li><a href="#listings">Properties</a></li>
                     <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#trust">Trust</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -1505,9 +1769,10 @@
         </button>
         <nav class="mobile-nav">
             <ul>
-                <li><a href="#why-us" class="mobile-link">Why Us</a></li>
+                <li><a href="#about-value" class="mobile-link">About</a></li>
                 <li><a href="#listings" class="mobile-link">Properties</a></li>
                 <li><a href="#gallery" class="mobile-link">Gallery</a></li>
+                <li><a href="#trust" class="mobile-link">Trust</a></li>
                 <li><a href="#services" class="mobile-link">Services</a></li>
                 <li><a href="#contact" class="mobile-link">Contact</a></li>
             </ul>
@@ -1522,13 +1787,39 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge"><i class="fas fa-shield-alt"></i> Trusted by buyers and investors nationwide</div>
-                <h1>Discover Premium Living in Nigeria</h1>
-                <p>We connect discerning buyers and investors with exceptional real estate opportunities across Lagos, Abuja, and beyond.</p>
+                <div class="hero-badge"><i class="fas fa-shield-alt"></i> Verified advisors for homebuyers and investors</div>
+                <h1>Find the Right Property — Without the Stress</h1>
+                <p>We help you discover verified homes, smart investments, and the best locations — all tailored to what you actually need.</p>
                 <div class="hero-buttons">
-                    <a href="#listings" class="btn btn-primary">View Properties</a>
-                    <a href="#contact" class="btn btn-outline">Book Consultation</a>
+                    <a href="#listings" class="btn btn-primary">Browse Available Properties</a>
+                    <a href="#contact" class="btn btn-outline">Book a Viewing</a>
                 </div>
+                <p class="hero-trustline">Trusted by clients • Verified listings • Fast response time</p>
+                <form class="hero-search" aria-label="Property search">
+                    <div class="search-field">
+                        <label for="heroLocation">Location</label>
+                        <input id="heroLocation" type="text" placeholder="Lagos, Abuja, Ikoyi..." />
+                    </div>
+                    <div class="search-field">
+                        <label for="heroPrice">Price Range</label>
+                        <select id="heroPrice">
+                            <option>Any Price</option>
+                            <option>₦50M - ₦150M</option>
+                            <option>₦150M - ₦400M</option>
+                            <option>₦400M+</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label for="heroType">Property Type</label>
+                        <select id="heroType">
+                            <option>Any Type</option>
+                            <option>Apartment</option>
+                            <option>Detached House</option>
+                            <option>Land</option>
+                        </select>
+                    </div>
+                    <button class="search-action" type="button">Search</button>
+                </form>
                 <div class="hero-metrics">
                     <div class="metric-card">
                         <span class="metric-value" data-counter-target="250" data-counter-suffix="+">0</span>
@@ -1583,7 +1874,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Featured Properties</h2>
-                <p>Explore our highly curated selection of luxury residences and prime investments.</p>
+                <p>Explore a selection of homes and investment opportunities carefully chosen for quality, location, and value.</p>
             </div>
 
             <div class="listings-grid reveal-on-scroll">
@@ -1598,7 +1889,7 @@
                             <span><i class="fas fa-bath"></i> 6 Baths</span>
                         </div>
                         <button class="btn whatsapp-enquire">
-                            <i class="fas fa-paper-plane"></i> Enquire Now
+                            <i class="fas fa-paper-plane"></i> View Details
                         </button>
                     </div>
                 </div>
@@ -1614,7 +1905,7 @@
                             <span><i class="fas fa-bath"></i> 4.5 Baths</span>
                         </div>
                         <button class="btn whatsapp-enquire">
-                            <i class="fas fa-paper-plane"></i> Enquire Now
+                            <i class="fas fa-paper-plane"></i> View Details
                         </button>
                     </div>
                 </div>
@@ -1630,10 +1921,56 @@
                             <span><i class="fas fa-bath"></i> 7 Baths</span>
                         </div>
                         <button class="btn whatsapp-enquire">
-                            <i class="fas fa-paper-plane"></i> Enquire Now
+                            <i class="fas fa-paper-plane"></i> View Details
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-value" class="section-padding value-section">
+        <div class="container">
+            <div class="value-layout reveal-on-scroll">
+                <div class="value-content">
+                    <h2>Real Estate, Done Properly</h2>
+                    <p>Buying or renting a property shouldn’t feel confusing or risky.</p>
+                    <p>We simplify the process by connecting you with verified listings, clear information, and direct support every step of the way.</p>
+                    <p>Whether you're searching for a home or looking to invest, we make sure you move with confidence.</p>
+                </div>
+                <div class="value-media">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1200" alt="Professional real estate consultation with client" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trust" class="section-padding trust-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Clients Choose Us</h2>
+            </div>
+            <div class="trust-stats reveal-on-scroll">
+                <div class="trust-stat">
+                    <strong>50+</strong>
+                    <span>Properties Listed</span>
+                </div>
+                <div class="trust-stat">
+                    <strong>20+</strong>
+                    <span>Happy Clients</span>
+                </div>
+                <div class="trust-stat">
+                    <strong>100%</strong>
+                    <span>Verified Listings</span>
+                </div>
+            </div>
+            <div class="trust-testimonials reveal-on-scroll">
+                <article class="trust-card">
+                    <p>"They made the entire process smooth and straightforward. I found exactly what I was looking for without the usual stress."</p>
+                </article>
+                <article class="trust-card">
+                    <p>"Very professional and responsive. I’d recommend them to anyone looking for serious property deals."</p>
+                </article>
             </div>
         </div>
     </section>
@@ -1801,8 +2138,8 @@
     <section id="contact" class="section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>Start Your Journey</h2>
-                <p>Reach out to schedule a private viewing or speak with an investment advisor.</p>
+                <h2>Let’s Talk About What You Need</h2>
+                <p>Tell us what you're looking for, and we’ll get back to you with options that match.</p>
             </div>
 
             <div class="contact-wrap reveal-on-scroll">
@@ -1834,7 +2171,7 @@
                             <label for="fMsg">Message</label>
                             <textarea id="fMsg" name="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Enquiry</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                         <div id="form-status" class="status-msg"></div>
                     </form>
                 </div>
@@ -1871,6 +2208,19 @@
         </div>
     </section>
 
+    <section class="section-padding main-cta">
+        <div class="container">
+            <div class="main-cta-inner reveal-on-scroll">
+                <h2>Ready to Find Your Next Property?</h2>
+                <p>Let’s help you secure the right home or investment — quickly and without hassle.</p>
+                <div class="main-cta-actions">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#contact" class="btn btn-outline">Book a Viewing Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="logo" style="margin-bottom: 20px;">3Peas<span>.</span></div>
@@ -1902,6 +2252,8 @@
     >
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <a href="#contact" class="mobile-sticky-cta">Contact / Book Now</a>
 
     <script>
         // --- 1. MOBILE NAVIGATION LOGIC ---
